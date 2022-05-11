@@ -9,12 +9,12 @@ app.get("/", (req, res) => {
   res.status(200).json("page not found");
 });
 
-app.post("/product", async (req, res) => {
+app.post("/post", async (req, res) => {
   try {
     const product = new Product(req.body);
     const createdproduct = await product.save();
     console.log(createdproduct);
-    res.status(201).send(createdproduct);
+    return res.status(201).send(createdproduct);
   } catch (e) {
     res.status(401).send(e);
   }
@@ -23,7 +23,7 @@ app.get("/product", async (req, res) => {
   try {
     const product = await Product.find();
 
-    res.status(200).json(product);
+    return res.status(200).json(product);
   } catch (e) {
     res.status(401).json(e);
   }
@@ -31,9 +31,9 @@ app.get("/product", async (req, res) => {
 app.get("/product/:name", async (req, res) => {
   try {
     const regex = new RegExp(req.params.name);
-    const product = await Product.find({ name: regex });
+    const product = await Product.find({ product_type: regex });
 
-    res.status(200).json(product);
+    return res.status(200).json(product);
   } catch (e) {
     res.status(401).json(e);
   }
