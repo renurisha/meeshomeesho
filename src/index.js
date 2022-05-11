@@ -6,26 +6,26 @@ const Product = require("./models/productModel");
 
 app.use(express.json());
 app.get("/", (req, res) => {
-  res.status(200).json("page not found");
+  res.send("not found......");
 });
 
 app.post("/post", async (req, res) => {
   try {
     const product = new Product(req.body);
     const createdproduct = await product.save();
-    console.log(createdproduct);
-    return res.status(201).send(createdproduct);
+
+    res.send(createdproduct);
   } catch (e) {
-    res.status(401).send(e);
+    res.send(e);
   }
 });
 app.get("/product", async (req, res) => {
   try {
     const product = await Product.find();
 
-    return res.status(200).json(product);
+    res.send(product);
   } catch (e) {
-    res.status(401).json(e);
+    res.send(e);
   }
 });
 app.get("/product/:name", async (req, res) => {
@@ -33,9 +33,9 @@ app.get("/product/:name", async (req, res) => {
     const regex = new RegExp(req.params.name);
     const product = await Product.find({ product_type: regex });
 
-    return res.status(200).json(product);
+    res.send(product);
   } catch (e) {
-    res.status(401).json(e);
+    res.send(e);
   }
 });
 
