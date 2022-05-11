@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Product = require("../models/productModel");
+router.get("", (req, res) => {
+  res.send("hello");
+});
 
 router.post("", async (req, res) => {
   try {
@@ -12,7 +15,7 @@ router.post("", async (req, res) => {
     res.status(401).send(e);
   }
 });
-router.get("", async (req, res) => {
+router.get("/data", async (req, res) => {
   try {
     const product = await Product.find();
 

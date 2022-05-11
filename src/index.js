@@ -9,12 +9,6 @@ require("./configs/db");
 app.use(express.json());
 app.use("/products", productController);
 
-
 app.listen(port, () => {
-  try {
-    console.log(`listening on port ${port} `);
-  } catch (e) {
-    console.log(e);
-  }
+  console.log(`listening on port ${port} `);
 });
-
