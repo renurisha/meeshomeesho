@@ -9,25 +9,17 @@ app.get("/", (req, res) => {
   res.send("not found......");
 });
 
-app.post("/post", async (req, res) => {
-  try {
-    const product = new Product(req.body);
-    const createdproduct = await product.save();
-
-    res.send(createdproduct);
-  } catch (e) {
-    res.send(e);
-  }
-});
 app.get("/product", async (req, res) => {
   try {
     const product = await Product.find();
+    console.log(product);
 
     res.send(product);
   } catch (e) {
     res.send(e);
   }
 });
+
 app.get("/product/:name", async (req, res) => {
   try {
     const regex = new RegExp(req.params.name);
