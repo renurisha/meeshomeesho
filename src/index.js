@@ -6,7 +6,7 @@ const Product = require("./models/productModel");
 
 app.use(express.json());
 app.get("/", (req, res) => {
-  res.send("not found......");
+  res.send("data does not exists..........");
 });
 
 app.get("/product", (req, res) => {
